@@ -36,14 +36,17 @@ public class GameMaster : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(spawnDelay);
-        Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        Transform clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
-        Destroy (clone, 3f);
+        playerPrefab.gameObject.SetActive (true);
+        playerPrefab.transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
+        // Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        // Transform clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
+        // Destroy (clone, 3f);
 
     }
     public static void KillPlayer(Player player)
     {
-        Destroy(player.gameObject);
+        player.gameObject.SetActive(false);
+        //Destroy(player.gameObject);
         gm.StartCoroutine(gm._RespawnPlayer());
     }
 
