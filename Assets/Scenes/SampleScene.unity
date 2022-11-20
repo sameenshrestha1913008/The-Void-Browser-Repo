@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 1032307543}
   - component: {fileID: 1032307548}
   - component: {fileID: 1032307547}
+  - component: {fileID: 1032307549}
   m_Layer: 0
   m_Name: AlienSpaceship
   m_TagString: Untagged
@@ -1388,7 +1389,7 @@ MonoBehaviour:
     maxHealth: 100
     startPctHealth: 1
     damage: 40
-  deathParticles: {fileID: 0}
+  deathParticles: {fileID: 2298395915219733026, guid: 332aaabd4193c444eb3f72da8c5cc384, type: 3}
   shakeAmt: 0.1
   shakeLength: 0.1
   statusIndicator: {fileID: 0}
@@ -1410,6 +1411,22 @@ MonoBehaviour:
   fMode: 0
   pathIsEnded: 0
   nextWaypointDistance: 3
+--- !u!58 &1032307549
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032307542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.88461536
 --- !u!1 &1046674219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarRect: {fileID: 246059265}
-  healthText: {fileID: 0}
+  healthText: {fileID: 938302116}
 --- !u!114 &1046674222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,7 +2097,7 @@ PrefabInstance:
     - target: {fileID: 5226910524180556824, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: playerPrefab
       value: 
-      objectReference: {fileID: 5763224064797742791, guid: d7cd52da889248342b2bc6a89d56ef3a, type: 3}
+      objectReference: {fileID: 439136205}
     - target: {fileID: 5226910524180556825, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: m_RootOrder
       value: 10
