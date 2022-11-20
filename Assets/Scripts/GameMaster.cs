@@ -22,9 +22,11 @@ public class GameMaster : MonoBehaviour
 
     public CameraShake camerashake;
 
+    private Player playerClass;
 
     void Start()
     {
+        playerClass = playerPrefab.GetComponent<Player>();
         if(camerashake== null)
         {
             Debug.LogError("No camera shake referenced in GameMaster");
@@ -38,14 +40,15 @@ public class GameMaster : MonoBehaviour
         yield return new WaitForSeconds(spawnDelay);
         playerPrefab.gameObject.SetActive (true);
         playerPrefab.transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
+        playerClass.Respawn();
         // Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
         // Transform clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
         // Destroy (clone, 3f);
 
     }
-    public static void KillPlayer(Player player)
+    public void KillPlayer()
     {
-        player.gameObject.SetActive(false);
+        playerClass.gameObject.SetActive(false);
         //Destroy(player.gameObject);
         gm.StartCoroutine(gm._RespawnPlayer());
     }
