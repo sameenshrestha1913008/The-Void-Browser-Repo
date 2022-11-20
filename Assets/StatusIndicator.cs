@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StatusIndicator : MonoBehaviour
 {
     [SerializeField]
     private RectTransform healthBarRect;
     [SerializeField]
-    private Text healthText;
+    private TMP_Text healthText;
 
     void Start()
     {
