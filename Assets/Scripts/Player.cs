@@ -2,26 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class PlayerStats
+{
+    public int maxHealth = 100;
+
+    private int _curHealth;
+    public int curHealth
+    {
+        get { return _curHealth; }
+        set { _curHealth = Mathf.Clamp(value, 0, maxHealth); }
+    }
+
+    public void Init()
+    {
+        curHealth = maxHealth;
+    }
+
+}
 public class Player : MonoBehaviour
 {
-    [System.Serializable]
-    public class PlayerStats
-    {
-        public int maxHealth = 100;
-
-        private int _curHealth;
-        public int curHealth
-        {
-            get { return _curHealth; }
-            set { _curHealth = Mathf.Clamp(value, 0, maxHealth); }
-        }
-
-        public void Init()
-        {
-            curHealth = maxHealth;
-        }
-
-    }
+    
 
     public PlayerStats stats = new PlayerStats();
 
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            statusIndicator.SetHealth(stats.curHealth,stats.maxHealth);
+            UpdateHealthUI(stats.curHealth,stats.maxHealth);
         }
     }
     void Update()
@@ -51,14 +52,28 @@ public class Player : MonoBehaviour
             DamagePlayer(9999999);
         
     }
+
+    private void UpdateHealthUI(int curHealth, int maxHealth)
+    {
+        statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
+    }
+   
     public void DamagePlayer(int damage)
     {
         stats.curHealth -= damage;
         if (stats.curHealth <= 0)
         {
-            GameMaster.KillPlayer(this);
+            GameMaster.gm.KillPlayer();
         }
 
-        statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
+        UpdateHealthUI(stats.curHealth, stats.maxHealth);
+    }
+
+    public void Respawn()
+    {
+        stats.curHealth = stats.maxHealth;
+        UpdateHealthUI(stats.curHealth, stats.maxHealth);
+
+
     }
 }
