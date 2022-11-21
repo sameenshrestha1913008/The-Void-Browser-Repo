@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5226910524180556825}
   - component: {fileID: 5226910524180556830}
   - component: {fileID: 5226910524180556824}
+  - component: {fileID: 5355786831958543679}
+  - component: {fileID: 3902796891594216610}
   m_Layer: 0
   m_Name: _GM
   m_TagString: GM
@@ -62,3 +64,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf9c347e93e160499b5d23ed3a56c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  spawnDelay: 2
+  spawnPrefab: {fileID: 0}
+  camerashake: {fileID: 0}
+--- !u!114 &5355786831958543679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226910524180556831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cee588f49115624194bf11f3c2a11da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 0}
+--- !u!114 &3902796891594216610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226910524180556831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d290e25317a744e83d1ebe21815833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Alien Invasion
+    enemy: {fileID: 8372877892689643075, guid: 916e2f0c57cc34f4aa148f607461f15b, type: 3}
+    count: 2
+    rate: 1
+  - name: Alien Invasion 2.0
+    enemy: {fileID: 8372877892689643075, guid: 916e2f0c57cc34f4aa148f607461f15b, type: 3}
+    count: 3
+    rate: 1.5
+  - name: Run While You Can
+    enemy: {fileID: 8372877892689643075, guid: 916e2f0c57cc34f4aa148f607461f15b, type: 3}
+    count: 5
+    rate: 2
+  timeBetweenWaves: 5
+  waveCountdown: 0

@@ -19,6 +19,8 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private int nextWave = 0;
 
+    public Transform[] spawnPoints;
+
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
 
@@ -28,6 +30,11 @@ public class WaveSpawner : MonoBehaviour
 
     void Start()
     {
+        if (spawnPoints.Length == 0)
+        {
+            Debug.LogError("No spawn points referenced");
+        }
+
         waveCountdown = timeBetweenWaves;
         
     }
@@ -74,8 +81,12 @@ public class WaveSpawner : MonoBehaviour
             nextWave = 0;
             Debug.Log("All Waves Complete! Looping...");
         }
+        else
+        {
+            nextWave++;
+        }
 
-        nextWave++;
+        
     }
     bool EnemyIsAlive()
     {
@@ -111,7 +122,10 @@ public class WaveSpawner : MonoBehaviour
     {
         
         Debug.Log("Spawning Enemy: " + _enemy.name);
-        Instantiate(_enemy, transform.position, transform.rotation);
+
+        
+        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(_enemy, _sp.position, _sp.rotation);
     }
 
 }
