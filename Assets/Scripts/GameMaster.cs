@@ -7,6 +7,9 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster gm;
 
+    [SerializeField]
+    private int maxLives = 3;
+    
     private static int _remainingLives = 3;
     public static int RemainingLives
     {
@@ -20,6 +23,7 @@ public class GameMaster : MonoBehaviour
             gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         }
     }
+
 
     public Transform playerPrefab;
     public Transform spawnPoint;
@@ -40,6 +44,8 @@ public class GameMaster : MonoBehaviour
         {
             Debug.LogError("No camera shake referenced in GameMaster");
         }
+
+        _remainingLives = maxLives;
     }
 
     public void EndGame()

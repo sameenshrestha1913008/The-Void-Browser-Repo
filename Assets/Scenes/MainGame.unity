@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 319734759}
   - component: {fileID: 319734758}
   - component: {fileID: 319734757}
+  - component: {fileID: 319734760}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -469,6 +470,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319734755}
   m_CullTransparentMesh: 1
+--- !u!114 &319734760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319734755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0.63529414, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &384009746
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +497,7 @@ GameObject:
   - component: {fileID: 384009750}
   - component: {fileID: 384009749}
   - component: {fileID: 384009748}
+  - component: {fileID: 384009751}
   m_Layer: 5
   m_Name: RetryButton
   m_TagString: Untagged
@@ -603,6 +620,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384009746}
   m_CullTransparentMesh: 1
+--- !u!114 &384009751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384009746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0.63529414, b: 1, a: 0.5}
+  m_EffectDistance: {x: 4, y: -4}
+  m_UseGraphicAlpha: 1
 --- !u!4 &439136205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5763224064797742791, guid: d7cd52da889248342b2bc6a89d56ef3a, type: 3}
@@ -3754,7 +3786,7 @@ PrefabInstance:
       objectReference: {fileID: 1618922812}
     - target: {fileID: 5226910524180556824, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: spawnDelay
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5226910524180556824, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: spawnPoint
