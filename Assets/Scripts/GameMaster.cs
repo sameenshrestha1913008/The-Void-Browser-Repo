@@ -146,5 +146,6 @@ public class GameMaster : MonoBehaviour
     public void GameComplete()
     {
         gameCompletedScreen.gameObject.SetActive(true);
+        playerClass.EnabledDisabledComponent(false);
     }
 }

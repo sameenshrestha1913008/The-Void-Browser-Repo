@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets._2D;
 
 [RequireComponent(typeof(SoundEffectPlayer))]
 [RequireComponent(typeof(AudioSource))]
@@ -28,6 +29,12 @@ public class PlayerStats
 }
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private Weapon weapon;
+
+    [SerializeField]
+    private Platformer2DUserControl platformUserControl;
+    
     private AudioSource audioSource;
     private SoundEffectPlayer soundEffectPlayer;
 
@@ -89,6 +96,11 @@ public class Player : MonoBehaviour
         statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
     }
    
+    public void EnabledDisabledComponent(bool enable)
+    {
+        weapon.enabled = enable;
+        platformUserControl.enabled = enable;
+    }
     public void DamagePlayer(int damage)
     {
         stats.curHealth -= damage;
@@ -96,7 +108,10 @@ public class Player : MonoBehaviour
         {
             //Play death sound
             audioManager.PlaySound(deathSoundName, soundEffectPlayer.soundListGetter, audioSource);
-            
+
+            EnabledDisabledComponent(false);
+
+
             // Kill Player
             GameMaster.gm.KillPlayer();
         }
@@ -113,7 +128,7 @@ public class Player : MonoBehaviour
     {
         stats.curHealth = stats.maxHealth;
         UpdateHealthUI(stats.curHealth, stats.maxHealth);
-
+        EnabledDisabledComponent(true);
 
     }
 
