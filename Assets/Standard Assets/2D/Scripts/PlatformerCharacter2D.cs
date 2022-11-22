@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 #pragma warning disable 649
 namespace UnityStandardAssets._2D
@@ -12,23 +14,28 @@ namespace UnityStandardAssets._2D
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
-        private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
+        [SerializeField]
+        string landingSoundName = "LandingFootsteps";
+
+        Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-        private bool m_Grounded;            // Whether or not the player is grounded.
-        private Transform m_CeilingCheck;   // A position marking where to check for ceilings
+        bool m_Grounded;            // Whether or not the player is grounded.
+        Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-        private Animator m_Anim;            // Reference to the player's animator component.
-        private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        Animator m_Anim;            // Reference to the player's animator component.
+        Rigidbody2D m_Rigidbody2D;
+        bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
         Transform m_playerGraphics;           // Reference to the graphics so we can change direction.
+
+        private AudioManager audioManager;
 
         [Obsolete]
         private void Awake()
         {
             // Setting up references.
             m_GroundCheck = transform.Find("GroundCheck");
-            m_CeilingCheck = transform.Find("CeilingCheck");
+            m_CeilingCheck = transform.Find("CeilingCheck");  
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_playerGraphics = transform.FindChild ("Graphics");
@@ -38,9 +45,19 @@ namespace UnityStandardAssets._2D
             }
         }
 
-
-        private void FixedUpdate()
+        void Start()
         {
+            audioManager = AudioManager.instance;
+            if (audioManager == null)
+            {
+                Debug.LogError("This is why we write weeor massages: No AudioManager found");
+            }
+        }
+
+        void FixedUpdate()
+        {
+            bool wasGrounded = m_Grounded;
+            
             m_Grounded = false;
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -52,6 +69,11 @@ namespace UnityStandardAssets._2D
                     m_Grounded = true;
             }
             m_Anim.SetBool("Ground", m_Grounded);
+
+            if (wasGrounded != m_Grounded && m_Grounded == true)
+            {
+                audioManager.PlaySound(landingSoundName);
+            }
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);

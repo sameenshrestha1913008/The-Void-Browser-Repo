@@ -20,6 +20,11 @@ public class Weapon : MonoBehaviour
     public float camShakeLength = 0.1f;
     CameraShake camShake;
 
+    public string weaponShootSound = "DefaultShot";
+
+    // Caching
+    AudioManager audioManager;
+
     float timeToFire = 0;
     Transform firePoint;
     void Awake()
@@ -37,6 +42,12 @@ public class Weapon : MonoBehaviour
         camShake = GameMaster.gm.GetComponent<CameraShake>();
         if (camShake == null)
             Debug.LogError("No CameraShake script found on gm object");
+
+        audioManager = AudioManager.instance;
+        if (audioManager == null)
+        {
+            Debug.LogError("Freak Out! No audiomanager found in scene");
+        }
     }
 
 
@@ -128,5 +139,8 @@ public class Weapon : MonoBehaviour
 
         // Shake the camera
         camShake.Shake(camShakeAmt, camShakeLength);
+
+        // Play shoot sound
+        audioManager.PlaySound(weaponShootSound);
     }
 }

@@ -5,9 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    string mouseHoverSound = "ButtonHover";
+
+    [SerializeField]
+    string buttonPressSound = "ButtonPress";
+
+    AudioManager audioManager;
+
+    void Start()
+    {
+        audioManager = AudioManager.instance;
+        if (audioManager == null)
+        {
+            Debug.LogError("No audio manage found in the scene");
+        }
+    }
+
     public void Quit()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         Debug.Log("Application Quit!");
         Application.Quit();
     }
@@ -15,6 +33,13 @@ public class GameOverUI : MonoBehaviour
     // Update is called once per frame
     public void Retry()
     {
+        audioManager.PlaySound(buttonPressSound);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void onMouseOver()
+    {
+        audioManager.PlaySound(mouseHoverSound);
     }
 }
