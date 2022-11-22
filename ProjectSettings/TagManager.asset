@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GM
   - Enemy
+  - DeathArea
   layers:
   - Default
   - TransparentFX

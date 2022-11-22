@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SoundEffectPlayer))]
+[RequireComponent(typeof(AudioSource))]
 [System.Serializable]
+
+
+
 public class PlayerStats
 {
+
     public int maxHealth = 100;
 
     private int _curHealth;
@@ -22,7 +28,8 @@ public class PlayerStats
 }
 public class Player : MonoBehaviour
 {
-    
+    private AudioSource audioSource;
+    private SoundEffectPlayer soundEffectPlayer;
 
     public PlayerStats stats = new PlayerStats();
 
@@ -30,6 +37,7 @@ public class Player : MonoBehaviour
 
     public string deathSoundName = "DeathVoice";
     public string damageSoundName = "Grunt";
+
 
     private AudioManager audioManager;
 
@@ -41,6 +49,15 @@ public class Player : MonoBehaviour
     {
         stats.Init();
 
+        if (GetComponent<SoundEffectPlayer>() != null)
+        {
+            soundEffectPlayer = GetComponent<SoundEffectPlayer>();
+        }
+
+        if (GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         if (statusIndicator == null)
         {
             Debug.LogError("No status Indicator reference on player");
@@ -61,9 +78,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y <= fallBoundary)
-        
-            DamagePlayer(9999999);
+        //if(transform.position.y <= fallBoundary)
+        //
+        //    DamagePlayer(9999999);
         
     }
 
@@ -78,7 +95,7 @@ public class Player : MonoBehaviour
         if (stats.curHealth <= 0)
         {
             //Play death sound
-            audioManager.PlaySound(deathSoundName);
+            audioManager.PlaySound(deathSoundName, soundEffectPlayer.soundListGetter, audioSource);
             
             // Kill Player
             GameMaster.gm.KillPlayer();
@@ -86,7 +103,7 @@ public class Player : MonoBehaviour
         else
         {
             // Play damage sound
-            audioManager.PlaySound(damageSoundName);
+            audioManager.PlaySound(damageSoundName, soundEffectPlayer.soundListGetter, audioSource);
         }
 
         UpdateHealthUI(stats.curHealth, stats.maxHealth);
@@ -98,5 +115,13 @@ public class Player : MonoBehaviour
         UpdateHealthUI(stats.curHealth, stats.maxHealth);
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "DeathArea")
+        {
+            DamagePlayer(stats.maxHealth);
+        }
     }
 }

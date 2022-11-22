@@ -35,9 +35,10 @@ public class Sound
 
     public void Play()
     {
+
         source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
-        source.Play();
+        source.PlayOneShot(source.clip);
     }
 
     public void Stop()
@@ -66,8 +67,9 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
+            instance = this;
         }
-        instance = this;
+        
     }
     void Start()
     {
@@ -81,16 +83,39 @@ public class AudioManager : MonoBehaviour
         PlaySound("Music");
     }
 
-    public void PlaySound (string _name)
+ 
+    public void PlaySound (string _name, List<Sound> soundList = null, AudioSource audioSource = null)
     {
-        for (int i = 0; i < sounds.Length; i++)
+        switch (soundList)
         {
-            if (sounds[i].name == _name)
-            {
-                sounds[i].Play();
-                return;
-            }
-        }
+            case null:
+                {
+                    for (int i = 0; i < sounds.Length; i++)
+                    {
+                        if (sounds[i].name == _name)
+                        {
+                            sounds[i].Play();
+                            return;
+                        }
+                    }
+                    break;
+                }
+            default:
+                {
+                    for (int i = 0; i < soundList.Count; i++)
+                    {
+                        soundList[i].SetSource(audioSource);
+                        if (soundList[i].name == _name)
+                        {
+                            soundList[i].Play();
+                            return;
+                        }
+                    }
+                    break;
+                }
+        }  
+           
+        
 
         // no sound with _name
         Debug.LogWarning("AudioManager sound not found in list, " + _name);

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(SoundEffectPlayer))]
+[RequireComponent(typeof(AudioSource))]
+
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
@@ -11,24 +14,36 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     string pressButtonSound = "ButtonPress";
 
+    private AudioSource audioSource;
+    private SoundEffectPlayer soundEffectPlayer;
+
     AudioManager audioManager;
     void Start()
     {
         audioManager = AudioManager.instance;
-        if(audioManager == null)
+        if (GetComponent<SoundEffectPlayer>() != null)
+        {
+            soundEffectPlayer = GetComponent<SoundEffectPlayer>();
+        }
+
+        if (GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (audioManager == null)
         {
             Debug.LogError("No AudioManager FOUND!");
         }
     }
     public void StartGame()
     {
-        audioManager.PlaySound(pressButtonSound);
+        audioManager.PlaySound(pressButtonSound, soundEffectPlayer.soundListGetter, audioSource);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
     {
-        audioManager.PlaySound(pressButtonSound);
+        audioManager.PlaySound(pressButtonSound, soundEffectPlayer.soundListGetter, audioSource);
 
         Debug.Log("We Quit the Game");
         Application.Quit();
@@ -36,7 +51,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnMouseOver()
     {
-        audioManager.PlaySound(hoverOverSound);
+        audioManager.PlaySound(hoverOverSound, soundEffectPlayer.soundListGetter, audioSource);
     }
 
 }

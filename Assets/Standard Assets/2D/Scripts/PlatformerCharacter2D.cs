@@ -28,7 +28,7 @@ namespace UnityStandardAssets._2D
 
         Transform m_playerGraphics;           // Reference to the graphics so we can change direction.
 
-        private AudioManager audioManager;
+        //private AudioManager audioManager;
 
         [Obsolete]
         private void Awake()
@@ -47,11 +47,11 @@ namespace UnityStandardAssets._2D
 
         void Start()
         {
-            audioManager = AudioManager.instance;
-            if (audioManager == null)
-            {
-                Debug.LogError("This is why we write weeor massages: No AudioManager found");
-            }
+            //audioManager = AudioManager.instance;
+            //if (audioManager == null)
+            //{
+            //    Debug.LogError("This is why we write weeor massages: No AudioManager found");
+            //}
         }
 
         void FixedUpdate()
@@ -70,10 +70,10 @@ namespace UnityStandardAssets._2D
             }
             m_Anim.SetBool("Ground", m_Grounded);
 
-            if (wasGrounded != m_Grounded && m_Grounded == true)
+            /*if (wasGrounded != m_Grounded && m_Grounded == true)
             {
                 audioManager.PlaySound(landingSoundName);
-            }
+            }*/
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);

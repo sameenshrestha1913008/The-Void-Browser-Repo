@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
+[RequireComponent(typeof(SoundEffectPlayer))]
+[RequireComponent(typeof(AudioSource))]
 public class GameMaster : MonoBehaviour
 {
+    private AudioSource audioSource;
+    private SoundEffectPlayer soundEffectPlayer;
     public static GameMaster gm;
 
     [SerializeField]
@@ -46,7 +50,16 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         playerClass = playerPrefab.GetComponent<Player>();
-        if(camerashake== null)
+        if (GetComponent<SoundEffectPlayer>() != null)
+        {
+            soundEffectPlayer = GetComponent<SoundEffectPlayer>();
+        }
+
+        if (GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        if (camerashake== null)
         {
             Debug.LogError("No camera shake referenced in GameMaster");
         }
@@ -63,7 +76,7 @@ public class GameMaster : MonoBehaviour
 
     public void EndGame()
     {
-        audioManager.PlaySound(gameOverSoundName);
+        audioManager.PlaySound(gameOverSoundName, soundEffectPlayer.soundListGetter, audioSource);
         
         Debug.Log("Game Over");
         gameOverUI.gameObject.SetActive(true);
@@ -72,12 +85,12 @@ public class GameMaster : MonoBehaviour
        
     public IEnumerator _RespawnPlayer()
     {
-        audioManager.PlaySound(respawnCoundownSoundName);
+        audioManager.PlaySound(respawnCoundownSoundName, soundEffectPlayer.soundListGetter, audioSource);
         
         yield return new WaitForSeconds(spawnDelay);
         playerPrefab.gameObject.SetActive (true);
 
-        audioManager.PlaySound(spawnSoundName);
+        audioManager.PlaySound(spawnSoundName, soundEffectPlayer.soundListGetter, audioSource);
         playerPrefab.transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
         playerClass.Respawn();
         // Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -87,8 +100,8 @@ public class GameMaster : MonoBehaviour
     }
     public void KillPlayer()
     {
-        playerClass.gameObject.SetActive(false);
-        //Destroy(player.gameObject);
+        playerClass.gameObject.transform.position=new Vector2(playerClass.gameObject.transform.position.x, -100000);
+        // Destroy(player.gameObject);
         _remainingLives-=1;
         if(_remainingLives <= 0)
         {
@@ -109,7 +122,7 @@ public class GameMaster : MonoBehaviour
     public void _KillEnemy(Enemy _enemy)
     {
         //Let's play some sound
-        audioManager.PlaySound(_enemy.deathSoundName);
+        audioManager.PlaySound(_enemy.deathSoundName, soundEffectPlayer.soundListGetter, audioSource);
 
         //Add Particles
         GameObject _clone = Instantiate(_enemy.deathParticles.gameObject, _enemy.transform.position, Quaternion.identity) as GameObject;

@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SoundEffectPlayer))]
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : MonoBehaviour
 {
     // Start is called before the first frame update
+    private AudioSource audioSource;
+    private SoundEffectPlayer soundEffectPlayer;
     public float fireRate = 0;
     public int Damage = 10;
     public LayerMask whatToHit;
@@ -39,6 +43,16 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
+        if (GetComponent<SoundEffectPlayer>() != null)
+        {
+            soundEffectPlayer= GetComponent<SoundEffectPlayer>();
+        }
+
+        if (GetComponent<AudioSource>() != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         camShake = GameMaster.gm.GetComponent<CameraShake>();
         if (camShake == null)
             Debug.LogError("No CameraShake script found on gm object");
@@ -141,6 +155,6 @@ public class Weapon : MonoBehaviour
         camShake.Shake(camShakeAmt, camShakeLength);
 
         // Play shoot sound
-        audioManager.PlaySound(weaponShootSound);
+        audioManager.PlaySound(weaponShootSound, soundEffectPlayer.soundListGetter, audioSource);
     }
 }
