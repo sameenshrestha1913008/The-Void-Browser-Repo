@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-   public enum SpawnState { SPAWNING, WAITING, COUNTING};  
+   public enum SpawnState { SPAWNING, WAITING, COUNTING, GAMECOMPLETE};  
     
    [System.Serializable]
    public class Wave
@@ -65,7 +65,7 @@ public class WaveSpawner : MonoBehaviour
             }
         }
         
-        if (waveCountdown <= 0)
+        if (waveCountdown <= 0 && state != SpawnState.GAMECOMPLETE)
         {
             if(state != SpawnState.SPAWNING)
             {
@@ -87,11 +87,14 @@ public class WaveSpawner : MonoBehaviour
 
         if (nextWave + 1 > waves.Length - 1)
         {
-            nextWave = 0;
+            state = SpawnState.GAMECOMPLETE;
+            // nextWave = 0;
+            GameMaster.gm.GameComplete();
             Debug.Log("All Waves Complete! Looping...");
         }
         else
         {
+            
             nextWave++;
         }
 

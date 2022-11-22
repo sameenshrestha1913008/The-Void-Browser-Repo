@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(SoundEffectPlayer))]
@@ -41,6 +42,8 @@ public class GameMaster : MonoBehaviour
 
     [SerializeField]
     private Transform gameOverUI;
+    [SerializeField]
+    private Transform gameCompletedScreen;
 
     // cache
     private AudioManager audioManager;
@@ -86,16 +89,23 @@ public class GameMaster : MonoBehaviour
     public IEnumerator _RespawnPlayer()
     {
         audioManager.PlaySound(respawnCoundownSoundName, soundEffectPlayer.soundListGetter, audioSource);
-        
+              
+
         yield return new WaitForSeconds(spawnDelay);
+
+        Transform clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
+        Destroy (clone.gameObject, 3f);
+
+
         playerPrefab.gameObject.SetActive (true);
+
+
 
         audioManager.PlaySound(spawnSoundName, soundEffectPlayer.soundListGetter, audioSource);
         playerPrefab.transform.position = new Vector2(spawnPoint.position.x, spawnPoint.position.y);
         playerClass.Respawn();
         // Instantiate (playerPrefab, spawnPoint.position, spawnPoint.rotation);
-        // Transform clone = Instantiate (spawnPrefab, spawnPoint.position, spawnPoint.rotation) as Transform;
-        // Destroy (clone, 3f);
+        
 
     }
     public void KillPlayer()
@@ -131,5 +141,10 @@ public class GameMaster : MonoBehaviour
         //Go Camershake
         camerashake.Shake(_enemy.shakeAmt, _enemy.shakeLength);
         Destroy(_enemy.gameObject);
+    }
+
+    public void GameComplete()
+    {
+        gameCompletedScreen.gameObject.SetActive(true);
     }
 }
