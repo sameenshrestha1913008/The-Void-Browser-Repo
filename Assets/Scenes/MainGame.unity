@@ -4206,6 +4206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlienSpaceship
       objectReference: {fileID: 0}
+    - target: {fileID: 4389286464631487661, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4389286464771090599, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
       propertyPath: m_Sprite
       value: 

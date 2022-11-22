@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4389286464631487654}
   m_Layer: 0
   m_Name: AlienSpaceship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   deathParticles: {fileID: 2298395915219733026, guid: 332aaabd4193c444eb3f72da8c5cc384, type: 3}
   shakeAmt: 0.1
   shakeLength: 0.1
+  deathSoundName: Explosion
   statusIndicator: {fileID: 4389286465070964601}
 --- !u!58 &4389286464631487654
 CircleCollider2D:
