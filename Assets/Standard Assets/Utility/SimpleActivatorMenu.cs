@@ -1,7 +1,7 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.UI;
+
 #pragma warning disable 618
 namespace UnityStandardAssets.Utility
 {

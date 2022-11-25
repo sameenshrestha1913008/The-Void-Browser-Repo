@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RETRY
+  m_text: PLAY AGAIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b30ef1e1a58058049bbe11a0b07d095e, type: 2}
   m_sharedMaterial: {fileID: 7073737270017978955, guid: b30ef1e1a58058049bbe11a0b07d095e, type: 2}
@@ -2248,7 +2248,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -102}
-  m_SizeDelta: {x: 267.6159, y: 80.9759}
+  m_SizeDelta: {x: 373.12, y: 80.9759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908306307
 MonoBehaviour:
@@ -3163,7 +3163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 114}
+  m_AnchoredPosition: {x: 0, y: 132.7}
   m_SizeDelta: {x: 680.4829, y: 165.4233}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1147097427
@@ -3201,7 +3201,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congartulations!
+  m_text: 'Congartulations!
+
+    YOU WON'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b30ef1e1a58058049bbe11a0b07d095e, type: 2}
   m_sharedMaterial: {fileID: 7073737270017978955, guid: b30ef1e1a58058049bbe11a0b07d095e, type: 2}
@@ -3210,8 +3212,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280092125
-  m_fontColor: {r: 0.8679245, g: 0.020469915, b: 0.112185985, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3234,7 +3236,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4713,7 +4715,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 267.6159, y: 80.9759}
+  m_SizeDelta: {x: 373.1209, y: 80.9759}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832561692
 MonoBehaviour:
@@ -5840,7 +5842,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.size
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: spawnPoints.Array.size
@@ -5856,15 +5858,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[3].rate
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[4].name
-      value: Run While You Can
+      value: Alien Invasion 5.0
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[4].rate
-      value: 2
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[5].name
+      value: Alien Invasion 6.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[5].rate
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[6].name
+      value: Alien Invasion 7.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[6].rate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[7].name
+      value: Alien Invasion 8.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[7].rate
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: spawnPoints.Array.data[0]
@@ -5904,7 +5930,7 @@ PrefabInstance:
       objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[3].count
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[3].enemy
@@ -5912,10 +5938,34 @@ PrefabInstance:
       objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[4].count
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
       propertyPath: waves.Array.data[4].enemy
+      value: 
+      objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[5].count
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[5].enemy
+      value: 
+      objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[6].count
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[6].enemy
+      value: 
+      objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[7].count
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902796891594216610, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
+      propertyPath: waves.Array.data[7].enemy
       value: 
       objectReference: {fileID: 4389286464631487649, guid: 79820ecae682b284eb25ca7157a23928, type: 3}
     - target: {fileID: 5226910524180556824, guid: 33783da6b2477514cb44b243ae080a52, type: 3}
